@@ -3,7 +3,6 @@
 
 if [ "$1" != "-d" ]; then
 
-	echo $0 > /tmp/v
 	start-stop-daemon --verbose --pidfile /var/run/rpi-dpms-hdmi.pid --name rpi-dpmg-hdmi --background --make-pidfile --nicelevel 5 --exec $0 --start -- -d
 	exit 0
 
@@ -11,7 +10,7 @@ fi
 
 xset dpms 150 300 450
 
-function tvon {
+tvon () {
 	tvservice --preferred
 	sleep 1
 	fbset -depth 8
